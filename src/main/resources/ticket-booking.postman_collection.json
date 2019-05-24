@@ -1,0 +1,2007 @@
+{
+	"info": {
+		"_postman_id": "34f935f6-6658-43a3-ade9-76c0bf036c5d",
+		"name": "ticket-booking",
+		"description": "rest api tests for ticket-booking app :)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cinema",
+			"item": [
+				{
+					"name": "sample cinema",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eb89022c-6d63-46fb-bcdd-c9262f247028",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"postman.setEnvironmentVariable(\"cinema\", responseBody);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cinema/sample",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"cinema",
+								"sample"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create cinema",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04af8ece-87ae-4788-a6dd-0b47c7c883f4",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{cinema}}"
+						},
+						"url": {
+							"raw": "localhost:8080/cinema",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"cinema"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all cinemas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "da22c7d9-dfb1-46b8-aa27-8f0b1a69a0f3",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"tests[\"Contains valid cinema\"] = responseBody.name === pm.environment.get(\"cinema\").name; "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cinema/all",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"cinema",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get cinema by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5931dd8a-8024-4037-b974-ce2636f89c07",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"tests[\"Contains valid cinema\"] = responseBody.name === pm.environment.get(\"cinema\").name; "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cinema/one/1",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"cinema",
+								"one",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete cinema by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cb0f396a-f14e-44d8-93f9-6f3d3b98db87",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 204\"] = responseCode.code === 204;",
+									"",
+									"console.log(responseCode.code);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cinema/one/1",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"cinema",
+								"one",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all cinemas Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "da22c7d9-dfb1-46b8-aa27-8f0b1a69a0f3",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"tests[\"Contains valid cinema\"] = responseBody.name === pm.environment.get(\"cinema\").name; "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cinema/all",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"cinema",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1251a742-c8b0-44a6-ba2c-105f048356b7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6255d5f3-d7e2-46d6-a9c6-811b89a885b4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "movie",
+			"item": [
+				{
+					"name": "sample movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "525715f2-f44b-44f7-9bd1-c770aefcbcc9",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"postman.setEnvironmentVariable(\"movie\", responseBody);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/movie/sample",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"movie",
+								"sample"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create movie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "75cb2944-2560-4061-a82f-bd6f1d0f162d",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Abc\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/movie",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"movie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6f9d56aa-9ccf-4d63-8bea-4f8a9e5d6307",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Contains valid movie\"] = responseBody.title === pm.environment.get(\"movie\").title; "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/movie/all",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"movie",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get movie by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "12f54daf-4506-4069-9528-5d39ed1dcd60",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Contains valid movie\"] = responseBody.title === pm.environment.get(\"movie\").title; "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/movie/one/14",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"movie",
+								"one",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete movie by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9f3b39bc-19c8-4c8b-87da-e71159a205a7",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 204\"] = responseCode.code === 204;",
+									"",
+									"console.log(responseCode.code)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/movie/one/14",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"movie",
+								"one",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1251a742-c8b0-44a6-ba2c-105f048356b7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6255d5f3-d7e2-46d6-a9c6-811b89a885b4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "reservation",
+			"item": [
+				{
+					"name": "sample reservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8a04d18b-484b-4566-bb6e-f9676750944d",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"postman.setEnvironmentVariable(\"reservation\", responseBody);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/reservation/sample",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"reservation",
+								"sample"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create reservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29ae1260-ef91-44f0-8c42-2b34103a92fb",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{reservation}}"
+						},
+						"url": {
+							"raw": "localhost:8080/reservation",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all reservations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4528c93d-1e49-43d9-853a-fe9c2dd2f019",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"tests[\"Contains valid reservation\"] = responseBody.price === pm.environment.get(\"reservation\").price; "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/reservation/all",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"reservation",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get reservation by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "42ec3627-0882-47ca-a211-0f0b0ee31349",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Contains valid reservation\"] = responseBody.price === pm.environment.get(\"reservation\").price; "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/reservation/one/15",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"reservation",
+								"one",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete reservation by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4e2a4bd0-0079-4752-8fc7-ce672a42f5ad",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 500\"] = responseCode.code === 500;",
+									"",
+									"console.log(responseCode.code)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/reservation/one/15",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"reservation",
+								"one",
+								"15"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "room",
+			"item": [
+				{
+					"name": "sample room",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f56b96be-59a1-4f07-828b-4681f934fa0c",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"postman.setEnvironmentVariable(\"room\", responseBody);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/room/sample",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"room",
+								"sample"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create room",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d146f04-d5e6-4d86-bb36-8d12f572c728",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{room}}"
+						},
+						"url": {
+							"raw": "localhost:8080/room",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all rooms",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "992729f1-5355-4dc9-83c0-82573afca04f",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"tests[\"Contains valid room\"] = responseBody.number === pm.environment.get(\"room\").number; "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/room/all",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"room",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get room by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa39c681-5343-4b4c-8cbc-a06b38561107",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Contains valid room\"] = responseBody.number === pm.environment.get(\"room\").number; "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/room/one/15",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"room",
+								"one",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete room by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5e77e22-1409-4393-9ec0-e865f67b330b",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 204\"] = responseCode.code === 204;",
+									"",
+									"console.log(responseCode.code)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/room/one/15",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"room",
+								"one",
+								"15"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1251a742-c8b0-44a6-ba2c-105f048356b7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6255d5f3-d7e2-46d6-a9c6-811b89a885b4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "screening",
+			"item": [
+				{
+					"name": "sample screening",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7eed97ff-f10f-4358-bb65-ad56e492c7f3",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"postman.setEnvironmentVariable(\"screening\", responseBody);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/screening/sample",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"screening",
+								"sample"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create screening",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1c497105-ee93-4fcb-923a-b42b1bb0dcec",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{screening}}"
+						},
+						"url": {
+							"raw": "localhost:8080/screening",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"screening"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all screenings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "28b736e5-2661-4286-bb61-27889212594c",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"tests[\"Contains valid screening\"] = responseBody.date === pm.environment.get(\"screening\").date; "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/screening/all",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"screening",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get screening by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "35c353ae-5f3c-4571-82e0-8b39a4c9234c",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Contains valid screening\"] = responseBody.date === pm.environment.get(\"screening\").date; "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/screening/one/20",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"screening",
+								"one",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete screening by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b9a7165f-24fb-4ef1-91e7-3f6e402c1ee9",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 204\"] = responseCode.code === 204;",
+									"",
+									"console.log(responseCode.code)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/screening/one/20",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"screening",
+								"one",
+								"20"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1251a742-c8b0-44a6-ba2c-105f048356b7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6255d5f3-d7e2-46d6-a9c6-811b89a885b4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "sample user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74e4dbb5-4ccf-4533-a045-628889578248",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"postman.setEnvironmentVariable(\"user\", responseBody);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user/sample",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"user",
+								"sample"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2ce3b5e1-23bb-4b07-aacd-0368102a366a",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{user}}"
+						},
+						"url": {
+							"raw": "localhost:8080/user",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c7d3d1d4-2157-496c-99f4-be7d8f00b93b",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"var response = JSON.parse(responseBody);",
+									"var user = JSON.parse(pm.environment.get(\"user\"));",
+									"",
+									"tests[\"Contains valid user\"] = response[0].name === user.name; ",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user/all",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0656133c-4eba-4df7-a6fb-c36bf34b0fcc",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Contains valid user\"] = responseBody === pm.environment.get(\"user\"); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user/one/27",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"user",
+								"one",
+								"27"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4b67d559-9784-48e1-98e6-92fb9dbfd420",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 204\"] = responseCode.code === 204;",
+									"",
+									"console.log(responseCode.code)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user/one/27",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"user",
+								"one",
+								"27"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "samplebussinessflow",
+			"item": [
+				{
+					"name": "create cinema",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04af8ece-87ae-4788-a6dd-0b47c7c883f4",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Abc\",\n    \"rooms\": [\n        {\n            \"number\": 1,\n            \"seats\": [\n                {\n                    \"line\": \"A\",\n                    \"number\": 2,\n                    \"taken\": true\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 5,\n                    \"taken\": true\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 3,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 4,\n                    \"taken\": false\n                }\n            ]\n        },\n        {\n            \"number\": 2,\n            \"seats\": [\n                {\n                    \"line\": \"A\",\n                    \"number\": 2,\n                    \"taken\": true\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 5,\n                    \"taken\": true\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 3,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 4,\n                    \"taken\": false\n                }\n            ]\n        },\n        {\n            \"number\": 3,\n            \"seats\": [\n                {\n                    \"line\": \"A\",\n                    \"number\": 2,\n                    \"taken\": true\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 5,\n                    \"taken\": true\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 3,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 4,\n                    \"taken\": false\n                }\n            ]\n        }\n    ],\n    \"screenings\": [\n        {\n            \"movie\": {\n                \"title\": \"Abc\"\n            },\n            \"room\": {\n                \"number\": 1,\n                \"seats\": [\n                    {\n                        \"line\": \"A\",\n                        \"number\": 2,\n                        \"taken\": true\n                    },\n                    {\n                        \"line\": \"A\",\n                        \"number\": 5,\n                        \"taken\": true\n                    },\n                    {\n                        \"line\": \"A\",\n                        \"number\": 3,\n                        \"taken\": false\n                    },\n                    {\n                        \"line\": \"A\",\n                        \"number\": 4,\n                        \"taken\": false\n                    }\n                ]\n            },\n            \"date\": \"2019-07-24T03:02:25.188\"\n        },\n        {\n            \"movie\": {\n                \"title\": \"Żółć\"\n            },\n            \"room\": {\n                \"number\": 2,\n                \"seats\": [\n                    {\n                        \"line\": \"A\",\n                        \"number\": 2,\n                        \"taken\": true\n                    },\n                    {\n                        \"line\": \"A\",\n                        \"number\": 5,\n                        \"taken\": true\n                    },\n                    {\n                        \"line\": \"A\",\n                        \"number\": 3,\n                        \"taken\": false\n                    },\n                    {\n                        \"line\": \"A\",\n                        \"number\": 4,\n                        \"taken\": false\n                    }\n                ]\n            },\n            \"date\": \"2019-08-24T03:02:25.188\"\n        },\n        {\n            \"movie\": {\n                \"title\": \"Żółć\"\n            },\n            \"room\": {\n                \"number\": 3,\n                \"seats\": [\n                    {\n                        \"line\": \"A\",\n                        \"number\": 2,\n                        \"taken\": true\n                    },\n                    {\n                        \"line\": \"A\",\n                        \"number\": 5,\n                        \"taken\": true\n                    },\n                    {\n                        \"line\": \"A\",\n                        \"number\": 3,\n                        \"taken\": false\n                    },\n                    {\n                        \"line\": \"A\",\n                        \"number\": 4,\n                        \"taken\": false\n                    }\n                ]\n            },\n            \"date\": \"2019-09-24T03:02:25.188\"\n        },\n        {\n            \"movie\": {\n                \"title\": \"Abc\"\n            },\n            \"room\": {\n                \"number\": 3,\n                \"seats\": [\n                    {\n                        \"line\": \"A\",\n                        \"number\": 2,\n                        \"taken\": true\n                    },\n                    {\n                        \"line\": \"A\",\n                        \"number\": 5,\n                        \"taken\": true\n                    },\n                    {\n                        \"line\": \"A\",\n                        \"number\": 3,\n                        \"taken\": false\n                    },\n                    {\n                        \"line\": \"A\",\n                        \"number\": 4,\n                        \"taken\": false\n                    }\n                ]\n            },\n            \"date\": \"2019-10-24T03:02:25.188\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/cinema",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"cinema"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create room (add to existing cinema)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d146f04-d5e6-4d86-bb36-8d12f572c728",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cinema\": 28,\n    \"number\": 10,\n    \"seats\": [\n        {\n            \"line\": \"A\",\n            \"number\": 2,\n            \"taken\": true\n        },\n        {\n            \"line\": \"A\",\n            \"number\": 5,\n            \"taken\": true\n        },\n        {\n            \"line\": \"A\",\n            \"number\": 3,\n            \"taken\": false\n        },\n        {\n            \"line\": \"A\",\n            \"number\": 4,\n            \"taken\": false\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/room",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create first screening to be sorted (add to existing cinema)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1c497105-ee93-4fcb-923a-b42b1bb0dcec",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cinema\": 1,\n    \"movie\": {\n        \"title\": \"Bcaxyz\"\n    },\n    \"room\": {\n        \"number\": 1,\n        \"seats\": [\n            {\n                \"line\": \"A\",\n                \"number\": 2,\n                \"taken\": false\n            },\n            {\n                \"line\": \"A\",\n                \"number\": 5,\n                \"taken\": false\n            },\n            {\n                \"line\": \"A\",\n                \"number\": 3,\n                \"taken\": false\n            },\n            {\n                \"line\": \"A\",\n                \"number\": 4,\n                \"taken\": false\n            }\n        ]\n    },\n    \"date\": \"2019-07-23T22:01:24.092\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/screening",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"screening"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create second screening to be sorted (add to existing cinema)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1c497105-ee93-4fcb-923a-b42b1bb0dcec",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cinema\": 28,\n    \"movie\": {\n        \"title\": \"Abc\"\n    },\n    \"room\": {\n        \"number\": 1,\n        \"seats\": [\n            {\n                \"line\": \"A\",\n                \"number\": 2,\n                \"taken\": false\n            },\n            {\n                \"line\": \"A\",\n                \"number\": 5,\n                \"taken\": false\n            },\n            {\n                \"line\": \"A\",\n                \"number\": 3,\n                \"taken\": false\n            },\n            {\n                \"line\": \"A\",\n                \"number\": 4,\n                \"taken\": false\n            }\n        ]\n    },\n    \"date\": \"2019-07-23T22:01:24.092\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/screening",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"screening"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create third screening to be sorted (add to existing cinema)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1c497105-ee93-4fcb-923a-b42b1bb0dcec",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cinema\": 28,\n    \"movie\": {\n        \"title\": \"Bca\"\n    },\n    \"room\": {\n        \"number\": 1,\n        \"seats\": [\n            {\n                \"line\": \"A\",\n                \"number\": 2,\n                \"taken\": false\n            },\n            {\n                \"line\": \"A\",\n                \"number\": 5,\n                \"taken\": false\n            },\n            {\n                \"line\": \"A\",\n                \"number\": 3,\n                \"taken\": false\n            },\n            {\n                \"line\": \"A\",\n                \"number\": 4,\n                \"taken\": false\n            }\n        ]\n    },\n    \"date\": \"2019-06-23T22:01:24.092\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/screening",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"screening"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create fourth screening to be sorted (add to existing cinema)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1c497105-ee93-4fcb-923a-b42b1bb0dcec",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cinema\": 28,\n    \"movie\": {\n        \"title\": \"Bca\"\n    },\n    \"room\": {\n        \"number\": 1,\n        \"seats\": [\n            {\n                \"line\": \"A\",\n                \"number\": 2,\n                \"taken\": false\n            },\n            {\n                \"line\": \"A\",\n                \"number\": 5,\n                \"taken\": false\n            },\n            {\n                \"line\": \"A\",\n                \"number\": 3,\n                \"taken\": false\n            },\n            {\n                \"line\": \"A\",\n                \"number\": 4,\n                \"taken\": false\n            }\n        ]\n    },\n    \"date\": \"2019-08-23T22:01:24.092\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/screening",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"screening"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all screenings in date range",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "28b736e5-2661-4286-bb61-27889212594c",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"tests[\"Contains valid screening\"] = responseBody.date === pm.environment.get(\"screening\").date; "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/screening/interval/230520192359/230920192359",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"screening",
+								"interval",
+								"230520192359",
+								"230920192359"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create incorrect reservation screening does not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29ae1260-ef91-44f0-8c42-2b34103a92fb",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"screening\": {\n        \"movie\": {\n            \"title\": \"Bca\"\n        },\n        \"room\": {\n            \"number\": 2,\n            \"seats\": [\n                {\n                    \"line\": \"A\",\n                    \"number\": 2,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 5,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 3,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 4,\n                    \"taken\": false\n                }\n            ]\n        },\n        \"date\": \"2019-08-23T22:01:24.092\"\n    },\n    \"seats\": [\n        {\n            \"line\": \"A\",\n            \"number\": 3,\n            \"taken\": false\n        },\n        {\n            \"line\": \"A\",\n            \"number\": 4,\n            \"taken\": false\n        }\n    ],\n    \"users\": [\n        {\n            \"name\": \"Abc\",\n            \"surname\": \"Abc\",\n            \"type\": \"ADULT\"\n        },\n        {\n            \"name\": \"Abc\",\n            \"surname\": \"Abc\",\n            \"type\": \"STUDENT\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/reservation",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create reservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29ae1260-ef91-44f0-8c42-2b34103a92fb",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"screening\": {\n        \"movie\": {\n            \"title\": \"Bca\"\n        },\n        \"room\": {\n            \"number\": 1,\n            \"seats\": [\n                {\n                    \"line\": \"A\",\n                    \"number\": 2,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 5,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 3,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 4,\n                    \"taken\": false\n                }\n            ]\n        },\n        \"date\": \"2019-08-23T22:01:24.092\"\n    },\n    \"seats\": [\n        {\n            \"line\": \"A\",\n            \"number\": 3,\n            \"taken\": false\n        },\n        {\n            \"line\": \"A\",\n            \"number\": 4,\n            \"taken\": false\n        }\n    ],\n    \"users\": [\n        {\n            \"name\": \"Abc\",\n            \"surname\": \"Abc\",\n            \"type\": \"ADULT\"\n        },\n        {\n            \"name\": \"Abc\",\n            \"surname\": \"Abc\",\n            \"type\": \"STUDENT\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/reservation",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create incorrect reservation seats taken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29ae1260-ef91-44f0-8c42-2b34103a92fb",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"screening\": {\n        \"movie\": {\n            \"title\": \"Bca\"\n        },\n        \"room\": {\n            \"number\": 1,\n            \"seats\": [\n                {\n                    \"line\": \"A\",\n                    \"number\": 2,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 5,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 3,\n                    \"taken\": true\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 4,\n                    \"taken\": true\n                }\n            ]\n        },\n        \"date\": \"2019-08-23T22:01:24.092\"\n    },\n    \"seats\": [\n        {\n            \"line\": \"A\",\n            \"number\": 3,\n            \"taken\": false\n        },\n        {\n            \"line\": \"A\",\n            \"number\": 4,\n            \"taken\": false\n        }\n    ],\n    \"users\": [\n        {\n            \"name\": \"Abc\",\n            \"surname\": \"Abc\",\n            \"type\": \"ADULT\"\n        },\n        {\n            \"name\": \"Abc\",\n            \"surname\": \"Abc\",\n            \"type\": \"STUDENT\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/reservation",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create incorrect single seat left between",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29ae1260-ef91-44f0-8c42-2b34103a92fb",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"screening\": {\n        \"movie\": {\n            \"title\": \"Bca\"\n        },\n        \"room\": {\n            \"number\": 1,\n            \"seats\": [\n                {\n                    \"line\": \"A\",\n                    \"number\": 2,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 5,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 3,\n                    \"taken\": true\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 4,\n                    \"taken\": true\n                }\n            ]\n        },\n        \"date\": \"2019-08-23T22:01:24.092\"\n    },\n    \"seats\": [\n        {\n            \"line\": \"A\",\n            \"number\": 2,\n            \"taken\": false\n        }\n    ],\n    \"users\": [\n        {\n            \"name\": \"Abc\",\n            \"surname\": \"Abc\",\n            \"type\": \"ADULT\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/reservation",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create reservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29ae1260-ef91-44f0-8c42-2b34103a92fb",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"screening\": {\n        \"movie\": {\n            \"title\": \"Bca\"\n        },\n        \"room\": {\n            \"number\": 1,\n            \"seats\": [\n                {\n                    \"line\": \"A\",\n                    \"number\": 2,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 5,\n                    \"taken\": false\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 3,\n                    \"taken\": true\n                },\n                {\n                    \"line\": \"A\",\n                    \"number\": 4,\n                    \"taken\": true\n                }\n            ]\n        },\n        \"date\": \"2019-08-23T22:01:24.092\"\n    },\n    \"seats\": [\n        {\n            \"line\": \"A\",\n            \"number\": 5,\n            \"taken\": false\n        }\n    ],\n    \"users\": [\n        {\n            \"name\": \"Abc\",\n            \"surname\": \"Abc\",\n            \"type\": \"ADULT\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/reservation",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all reservations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4528c93d-1e49-43d9-853a-fe9c2dd2f019",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"tests[\"Contains valid reservation\"] = responseBody.price === pm.environment.get(\"reservation\").price; "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/reservation/all",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"reservation",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all cinemas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "da22c7d9-dfb1-46b8-aa27-8f0b1a69a0f3",
+								"exec": [
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									" ",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									" ",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									"",
+									"tests[\"Contains valid cinema\"] = responseBody.name === pm.environment.get(\"cinema\").name; "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cinema/all",
+							"host": [
+								"localhost:8080"
+							],
+							"path": [
+								"cinema",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
